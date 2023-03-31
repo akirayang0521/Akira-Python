@@ -2,8 +2,7 @@ cls
 clear all
 
 * Question 1
-use HW2a.dta
-*use "C:\Users\syang61\Downloads\HW2a_old.dta"
+use "C:\Users\syang61\Downloads\HW2a_old.dta"
 * part a
 gen race = 0
 replace race = 1 if black == 0 & hispan == 0
@@ -40,8 +39,7 @@ cls
 clear all
 
 * Question 2
-use HW2b.dta
-*use "C:\Users\syang61\Downloads\HW2b_old.dta"
+use "C:\Users\syang61\Downloads\HW2b_old.dta"
 * part a
 tabstat age educ black married lre74 lre75 lre78, by (train) stat(mean sd)
 * part b - Run a simple regression of lre78 on train
@@ -64,7 +62,7 @@ reg lre78 train re74 re75 educ age black hisp
 * part e - incorporate an interaction of minor and train in the regression
 gen minor = 0
 replace minor = 1 if black == 1 | hisp == 1
-reg lre78 train re74 re75 educ age minor train#minor
+reg lre78 train train#minor re74 re75 educ age black hisp 
 * part f - include controls for unemployment in 1974 and 1975
 reg lre78 train re74 re75 educ age black hisp unem74 unem75
 * part g - include unem78 as the dependent variable
